@@ -28,13 +28,25 @@ def plot_images(src_img, gen_img, filename):
     print('Saved: ', filename)
 
 
-if __name__ == '__main__':
-    test_images_path = 'D:/K-State/Sem2/690/Galaxies Data/images/upsampled_test/'
-    output_path = 'D:/K-State/Sem2/690/Galaxies Data/predicted/20_epochs_138_images/'
+# plot just the generated images
+def plot_generated_images(gen_image, filename):
+    # Scale from [-1,1] to [0,1]
+    gen_image = (gen_image + 1) / 2.0
+    # Save the generated image
+    output_filename = output_path + filename.split('.')[0] + '.png'
+    pyplot.imsave(output_filename, gen_image[0])
+    print('Saved: ', output_filename)
 
-    model = load_model('20_epochs_138_images.h5')
+
+if __name__ == '__main__':
+    test_images_path = ''
+    output_path = ''
+
+    model = load_model('50_epochs_3000_images.h5')
 
     size = (256, 256)
+
+    counter = 0
 
     for filename in os.listdir(test_images_path):
         # load and resize the image
@@ -49,4 +61,7 @@ if __name__ == '__main__':
         # generate image from source
         gen_image = model.predict(src_image)
 
-        plot_images(src_image, gen_image, filename)
+        plot_generated_images(gen_image, filename)
+        
+        counter += 1
+        print(counter, 'images predicted!')

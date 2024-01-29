@@ -6,6 +6,10 @@ from scipy.ndimage import rotate
 
 def augment_img(img_path, result_folder_path):
     # augments the img and stores it in the result folder
+
+    if not os.path.exists(img_path):
+        return
+
     image = tiff.imread(img_path)
     filename = img_path.split('\\')[-1].split('.')[0]
 
@@ -24,19 +28,20 @@ def augment_img(img_path, result_folder_path):
                 '_vertical.tif'), flipped_vertical)
     tiff.imsave(os.path.join(result_folder_path, filename +
                 '_rotated90.tif'), rotated_90)
+    tiff.imsave(os.path.join(result_folder_path, filename + '.tif'), image)
 
     print('Augmented: ', filename)
 
 
 if __name__ == '__main__':
 
-    galaxies_path = 'D:/K-State/Sem2/690/Galaxies Data/images'
-    annotated_path = 'D:/K-State/Sem2/690/Galaxies Data/annotated'
+    galaxies_path = ''
+    annotated_path = ''
 
-    aug_galaxies_path = 'D:/K-State/Sem2/690/Augmented Data/images'
-    aug_annotated_path = 'D:/K-State/Sem2/690/Augmented Data/annotated'
+    aug_galaxies_path = ''
+    aug_annotated_path = ''
 
-    for filename in os.listdir(galaxies_path):
+    for filename in os.listdir(annotated_path):
         galaxy_img_path = os.path.join(galaxies_path, filename)
         annotated_img_path = os.path.join(annotated_path, filename)
         augment_img(galaxy_img_path, aug_galaxies_path)

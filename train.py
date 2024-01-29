@@ -1,13 +1,5 @@
-# https://youtu.be/6pUSZgPJ3Yg
-"""
-Satellite image to maps image translation ​using Pix2Pix GAN
-
-Data from: http://efrosgans.eecs.berkeley.edu/pix2pix/datasets/maps.tar.gz
-Also find other datasets here: http://efrosgans.eecs.berkeley.edu/pix2pix/datasets/
-"""
-
 from datetime import datetime
-from model import define_discriminator, define_generator, define_gan, train
+from base_model import define_discriminator, define_generator, define_gan, train
 from os import listdir
 from numpy import asarray
 from keras.preprocessing.image import img_to_array
@@ -31,7 +23,7 @@ def load_images(path, size=(256, 512)):
 
 
 # dataset path
-path = 'D:/K-State/Sem2/690/Galaxies Data/upsampled/'
+path = ''
 # load dataset
 [src_images, tar_images] = load_images(path)
 print('Loaded: ', src_images.shape, tar_images.shape)
@@ -60,6 +52,7 @@ def preprocess_data(data):
     X2 = (X2 - 127.5) / 127.5
     return [X1, X2]
 
+
 dataset = preprocess_data(data)
 
 start1 = datetime.now()
@@ -72,8 +65,5 @@ stop1 = datetime.now()
 # Execution time of the model
 execution_time = stop1 - start1
 print("Execution time is: ", execution_time)
-
-# Reports parameters for each batch (total 1096) for each epoch.
-# For 10 epochs we should see 10960
 
 #################################################

@@ -5,10 +5,8 @@ from libtiff import TIFF
 
 def concatenate_images(image1_path, image2_path, output_path):
     '''
-    Given two images paths, this function concatenates the image1 with image2 and stores the resultant Concatenated image in the output_path.
-    Result image dimensions:
-        width - 240
-        height - 120
+    Given two images paths, this function concatenates the image1 with image2 (side by side)
+    and stores the resultant Concatenated image in the output_path.
     '''
 
     # Open the first image
@@ -41,9 +39,9 @@ def concatenate_images(image1_path, image2_path, output_path):
 
 if __name__ == '__main__':
 
-    original_images = 'D:/K-State/Sem2/690/Galaxies Data/images/train'
-    annotated_images = 'D:/K-State/Sem2/690/Galaxies Data/annotated'
-    output_path = 'D:/K-State/Sem2/690/Galaxies Data/concatenated'
+    original_images = ''
+    annotated_images = ''
+    output_path = ''
 
     # print(len(os.listdir(original_images)))
 
